@@ -1,0 +1,147 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background-color: $black;
+}
+
+#wrapper {
+	width: 90%;
+	margin: 20px auto 30px;
+	padding: 20px 26px 20px 30px;
+	background-color: $wrapper-bg;
+	border-radius: 10px;
+}
+
+
+#video-wrap,
+#video-player,
+#video-controls,
+#control-wrap,
+#control-L,
+#control-R {
+	box-sizing: content-box;
+}
+
+
+#video-wrap {
+	position: relative;
+	width: 99%;
+}
+
+#video-player {
+	border: 4px solid $black;
+}
+
+
+#control-wrap {
+	width: 100%;
+	position: absolute;
+	bottom: 7px;
+	left: 4px;
+	z-index: 1;
+}
+
+#video-controls {
+	width: 100%;
+	height: 28px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.highlight {
+	color: $highlight;
+}
+
+
+#selectspeed p {
+	display: inline-block;
+	padding-left: 5px;
+}
+
+#control-L,
+#control-R {
+	display: inline-flex;
+} 
+
+
+#progressTime span {
+	display: inline-block;
+	padding-top: 5px;
+}
+ 
+.button {
+	border: none;
+	background: transparent;
+	padding-left: 5px;
+}
+
+#fsbutton {
+	padding-right: 5px;
+}
+
+.icon {
+	display: block;
+	margin: $center-item;
+}
+
+#cc {
+	display: block;
+	border: 1px solid $white;
+	background: $black;
+	border-radius: 2px;
+	color: $white;
+}
+
+
+#pauseplay,
+#unmute {
+	display: none;
+}
+
+.pause {
+	margin-left: 0;
+}
+
+#progress-container {
+	width: 99%;
+	margin: $center-item;
+}
+
+#progress-bar {
+	box-sizing: border-box;
+	width: 100%;
+	border-radius: 50px;
+	height: 5px;
+	border: none;
+	background-color: $black;
+	color: $progress;
+}
+
+.progress {
+	width: 100%;
+}
+
+
+#vol-control {
+	width: 40px;
+	height: 100%;
+}
+
+#vol-slide {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+
+@media screen and (max-width: 320px) {
+	#video-controls,
+	#fsbutton,
+	#selectspeed,
+	#vol-slide,
+	#progressTime {
+		display: none;
+	}
+}

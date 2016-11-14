@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>HTML5 Video Player</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Oxygen|Source+Sans+Pro" rel="stylesheet">
+	<link rel="stylesheet" href="css/normalize.css" type="text/css">
+	<link rel="stylesheet" href="css/application.css" type="text/css">
+</head>
+
+<body>
+
+<h1>HTML 5 VIDEO</h1>
+
+<div id="wrapper">
+	<div id="video-wrap">
+		<video id="video-player" width="100%" controls>
+			<source src="video/video.mp4" type="video/mp4">
+			<source src="video/video.ogg" type="video/ogg">
+			<track label="English" kind="captions" srclang="en" src="video/captions.vtt" default>
+		</video>
+
+		<div id="video-controls" class="controls" data-state="hidden">
+		   <button id="playpause" class="button" title="play" type="button" data-state="play" onclick="togglePlayPause();">
+			   	<svg class="play icon" id="play" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+				<path fill="#000000" d="M8 0c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zM8 14.5c-3.59 0-6.5-2.91-6.5-6.5s2.91-6.5 6.5-6.5 6.5 2.91 6.5 6.5-2.91 6.5-6.5 6.5zM6 4.5l6 3.5-6 3.5z"></path>
+				</svg>
+		   </button>
+		   <button id="pauseplay" class="button" title="play" type="button" data-state="play" onclick="togglePlayPause();">
+		   		<svg class="pause icon" id="pause" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+				<path fill="#000000" d="M8 0c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zM8 14.5c-3.59 0-6.5-2.91-6.5-6.5s2.91-6.5 6.5-6.5 6.5 2.91 6.5 6.5-2.91 6.5-6.5 6.5zM5 5h2v6h-2zM9 5h2v6h-2z"></path>
+				</svg>
+			</button>
+
+		   <button id="stop" class="button" type="button" data-state="stop" onclick="stopPlayer();">
+				<svg class="stop icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+				<path fill="#000000" d="M8 0c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zM8 14.5c-3.59 0-6.5-2.91-6.5-6.5s2.91-6.5 6.5-6.5 6.5 2.91 6.5 6.5-2.91 6.5-6.5 6.5zM5 5h6v6h-6z"></path>
+				</svg>
+		   </button>
+		   <div class="progress">
+		      <progress id="progress" class="bar" value="0" min="0">
+		         <span id="progress-bar"></span>
+		      </progress>
+		   </div>
+
+		   <button id="mute" class="button" type="button" data-state="mute" onclick="toggleMute();">
+				<svg class="mute icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+				<path fill="#000000" d="M15 9.674v1.326h-1.326l-1.674-1.674-1.674 1.674h-1.326v-1.326l1.674-1.674-1.674-1.674v-1.326h1.326l1.674 1.674 1.674-1.674h1.326v1.326l-1.674 1.674 1.674 1.674z"></path>
+				<path fill="#000000" d="M6.5 15c-0.13 0-0.258-0.051-0.354-0.146l-3.854-3.854h-1.793c-0.276 0-0.5-0.224-0.5-0.5v-5c0-0.276 0.224-0.5 0.5-0.5h1.793l3.854-3.854c0.143-0.143 0.358-0.186 0.545-0.108s0.309 0.26 0.309 0.462v13c0 0.202-0.122 0.385-0.309 0.462-0.062 0.026-0.127 0.038-0.191 0.038z"></path>
+				</svg>
+		   </button>
+
+		   	<button id="unmute" class="button" type="button" data-state="unmute" onclick="toggleMute();">
+				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+				<path fill="#000000" d="M6.5 15c-0.13 0-0.258-0.051-0.354-0.146l-3.854-3.854h-1.793c-0.276 0-0.5-0.224-0.5-0.5v-5c0-0.276 0.224-0.5 0.5-0.5h1.793l3.854-3.854c0.143-0.143 0.358-0.186 0.545-0.108s0.309 0.26 0.309 0.462v13c0 0.202-0.122 0.385-0.309 0.462-0.062 0.026-0.127 0.038-0.191 0.038z"></path>
+				</svg>
+			</button>
+
+<!-- 		   	<button id="voldec" class="button" title="volume decrease" type="button" data-state="voldown" onclick='changeVolume("-");'>
+				<svg class="voldecrease icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+				<path fill="#000000" d="M8 7h8v2h-8v-2z"></path>
+				<path fill="#000000" d="M6.5 15c-0.13 0-0.258-0.051-0.354-0.146l-3.854-3.854h-1.793c-0.276 0-0.5-0.224-0.5-0.5v-5c0-0.276 0.224-0.5 0.5-0.5h1.793l3.854-3.854c0.143-0.143 0.358-0.186 0.545-0.108s0.309 0.26 0.309 0.462v13c0 0.202-0.122 0.385-0.309 0.462-0.062 0.026-0.127 0.038-0.191 0.038z"></path>
+				</svg>
+		   </button> -->
+
+			<input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
+
+<!-- 		   <button id="volinc" class="button" title="volume increase"  type="button" data-state="volup" onclick='changeVolume("+");'>
+				<svg class="volincrease icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+				<path fill="#000000" d="M16 9h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2z"></path>
+				<path fill="#000000" d="M6.5 15c-0.13 0-0.258-0.051-0.354-0.146l-3.854-3.854h-1.793c-0.276 0-0.5-0.224-0.5-0.5v-5c0-0.276 0.224-0.5 0.5-0.5h1.793l3.854-3.854c0.143-0.143 0.358-0.186 0.545-0.108s0.309 0.26 0.309 0.462v13c0 0.202-0.122 0.385-0.309 0.462-0.062 0.026-0.127 0.038-0.191 0.038z"></path>
+				</svg>
+		   </button> -->
+
+		   <button id="fs" class="button" type="button" data-state="go-fullscreen">
+				<svg class="fullscreen icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+				<path fill="#000000" d="M16 0h-6.5l2.5 2.5-3 3 1.5 1.5 3-3 2.5 2.5z"></path>
+				<path fill="#000000" d="M16 16v-6.5l-2.5 2.5-3-3-1.5 1.5 3 3-2.5 2.5z"></path>
+				<path fill="#000000" d="M0 16h6.5l-2.5-2.5 3-3-1.5-1.5-3 3-2.5-2.5z"></path>
+				<path fill="#000000" d="M0 0v6.5l2.5-2.5 3 3 1.5-1.5-3-3 2.5-2.5z"></path>
+				</svg>
+		   </button>
+		</div>	
+			
+	</div>
+</div>
+	<div id="caption-wrap">
+		<p><span id="span-1"> 00:00:00,240 --> 00:00:04,130 Now that we've looked at the architecture of the internet, let's see how you might </span><span id="span-2"> 00:00:04,130 --> 00:00:07,535 connect your personal devices to the internet inside your house. </span>
+		</p>
+		<p><span id="span-3"> 00:00:07,535 --> 00:00:11,270 Well there are many ways to connect to the internet, and </span><span id="span-4">00:00:11,270 --> 00:00:13,960 most often people connect wirelessly. </span>
+		</p>
+		<p><span id="span-5"> 00:00:13,960 --> 00:00:17,940 Let's look at an example of how you can connect to the internet. </span>
+		</p>
+		<p><span id="span-6"> 00:00:17,940 --> 00:00:22,370 If you live in a city or a town, you probably have a coaxial cable for </span><span id="span-7">00:00:22,370 --> 00:00:26,880 cable Internet, or a phone line if you have DSL, running to the outside of </span><span id="span-8"> 00:00:26,880 --> 00:00:30,920 your house, that connects you to the Internet Service Provider, or ISP. </span>
+		</p>
+		<p><span id="span-9"> 00:00:32,100 --> 00:00:34,730 If you live far out in the country, you'll more likely have </span><span id="span-10"> 00:00:34,730 --> 00:00:39,430 a dish outside your house, connecting you wirelessly to your closest ISP, or </span><span id="span-11">00:00:39,430 --> 00:00:41,190 you might also use the telephone system.</span>
+		</p>
+		<p><span id="span-12">00:00:42,350 --> 00:00:46,300 Whether a wire comes straight from the ISP hookup outside your house, or </span><span id="span-13">00:00:46,300 --> 00:00:49,270 it travels over radio waves from your roof,</span><span id="span-14">00:00:49,270 --> 00:00:53,760 the first stop a wire will make once inside your house, is at your modem.</span>
+		</p>
+		<p><span id="span-15">00:00:53,760 --> 00:00:57,780 A modem is what connects the internet to your network at home.</span>
+		</p>
+		<p><span id="span-16">00:00:57,780 --> 00:01:00,150 A few common residential modems are DSL or </span>
+		</p>
+	</div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

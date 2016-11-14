@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>HTML5 Video Player</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Oxygen|Source+Sans+Pro" rel="stylesheet">
+	<link rel="stylesheet" href="css/normalize.css" type="text/css">
+	<link rel="stylesheet" href="css/application.css" type="text/css">
+</head>
+
+<body>
+
+<h1>HTML 5 VIDEO</h1>
+
+<div id="wrapper">
+	<div id="video-wrap" onMouseOver="showControls()" onMouseOut="hideControls()">
+
+		<video id="video-player" width="100%" controls>
+			<source src="video/video.mp4" type="video/mp4">
+			<source src="video/video.ogg" type="video/ogg">
+			<track id="videotrack" label="English" kind="captions" srclang="en" src="video/captions.vtt" default>
+				Your browser does not support the video tag.
+		</video>
+
+		<div id="control-wrap">
+
+			<div id="progress-container">
+			    <progress id="progress-bar" class="bar" min="0" max="100" value="0">
+			    	0% played
+			    </progress>
+			</div>
+
+			<div id="video-controls" class="controls" data-state="hidden">
+				<div id="control-L">
+				   <button id="playpause" class="button" title="play" type="button" data-state="play" onclick="togglePlayPause();">
+					   	<svg class="play icon" id="play" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+						<path fill="#000000" d="M8 0c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zM8 14.5c-3.59 0-6.5-2.91-6.5-6.5s2.91-6.5 6.5-6.5 6.5 2.91 6.5 6.5-2.91 6.5-6.5 6.5zM6 4.5l6 3.5-6 3.5z"></path>
+						</svg>
+				   </button>
+				   <button id="pauseplay" class="button" title="play" type="button" data-state="play" onclick="togglePlayPause();">
+				   		<svg class="pause icon" id="pause" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+						<path fill="#000000" d="M8 0c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zM8 14.5c-3.59 0-6.5-2.91-6.5-6.5s2.91-6.5 6.5-6.5 6.5 2.91 6.5 6.5-2.91 6.5-6.5 6.5zM5 5h2v6h-2zM9 5h2v6h-2z"></path>
+						</svg>
+					</button>
+
+				   <button id="stop" class="button" type="button" data-state="stop" onclick="stopPlayer();">
+						<svg class="stop icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+						<path fill="#000000" d="M8 0c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zM8 14.5c-3.59 0-6.5-2.91-6.5-6.5s2.91-6.5 6.5-6.5 6.5 2.91 6.5 6.5-2.91 6.5-6.5 6.5zM5 5h6v6h-6z"></path>
+						</svg>
+				   </button>
+
+				   <div id="progressTime" class="button">
+				   		<span id="current">00:00 / </span> 
+				   		<span id="duration">00:00</span>
+				   </div>
+
+				</div>
+
+				<div id="control-R">
+				   <button id="closedcaption" class="button" type="button" onclick="toggleCaptions();">
+				   		<p id="cc" >CC</p>
+				   </button>
+
+				   <button id="mute" class="button" type="button" data-state="mute" onclick="toggleMute();">
+						<svg class="mute icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+						<path fill="#000000" d="M15 9.674v1.326h-1.326l-1.674-1.674-1.674 1.674h-1.326v-1.326l1.674-1.674-1.674-1.674v-1.326h1.326l1.674 1.674 1.674-1.674h1.326v1.326l-1.674 1.674 1.674 1.674z"></path>
+						<path fill="#000000" d="M6.5 15c-0.13 0-0.258-0.051-0.354-0.146l-3.854-3.854h-1.793c-0.276 0-0.5-0.224-0.5-0.5v-5c0-0.276 0.224-0.5 0.5-0.5h1.793l3.854-3.854c0.143-0.143 0.358-0.186 0.545-0.108s0.309 0.26 0.309 0.462v13c0 0.202-0.122 0.385-0.309 0.462-0.062 0.026-0.127 0.038-0.191 0.038z"></path>
+						</svg>
+				   </button>
+
+				   	<button id="unmute" class="button" type="button" data-state="unmute" onclick="toggleMute();">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+						<path fill="#000000" d="M6.5 15c-0.13 0-0.258-0.051-0.354-0.146l-3.854-3.854h-1.793c-0.276 0-0.5-0.224-0.5-0.5v-5c0-0.276 0.224-0.5 0.5-0.5h1.793l3.854-3.854c0.143-0.143 0.358-0.186 0.545-0.108s0.309 0.26 0.309 0.462v13c0 0.202-0.122 0.385-0.309 0.462-0.062 0.026-0.127 0.038-0.191 0.038z"></path>
+						</svg>
+					</button>
+
+				   <div id="vol-slide">
+					<input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
+					</div>
+
+			   		<div id="selectspeed">
+			   			<p id="slow">Slow</p>
+			   			<p id="normal">Normal</p>
+			   			<p id="fast">Fast</p>
+			   		</div>
+
+
+				   <button id="fsbutton" class="button" type="button" data-state="go-fullscreen" onclick="toggleFullScreen();">
+						<svg class="fullscreen icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+						<path fill="#000000" d="M16 0h-6.5l2.5 2.5-3 3 1.5 1.5 3-3 2.5 2.5z"></path>
+						<path fill="#000000" d="M16 16v-6.5l-2.5 2.5-3-3-1.5 1.5 3 3-2.5 2.5z"></path>
+						<path fill="#000000" d="M0 16h6.5l-2.5-2.5 3-3-1.5-1.5-3 3-2.5-2.5z"></path>
+						<path fill="#000000" d="M0 0v6.5l2.5-2.5 3 3 1.5-1.5-3-3 2.5-2.5z"></path>
+						</svg>
+				   </button>
+				</div>
+			</div>		
+
+		</div>
+	</div>
+
+	<div id="caption-wrap">
+		<p><span id="span-1" class="span" data-cue="1" data-start="0" data-end="3">Now that we've looked at the architecture of the internet, let's see how you might</span> <span id="span-2" class="span" data-cue="2" data-start="4" data-end="7">connect your personal devices to the internet inside your house.</span></p>
+
+		<p><span id="span-3" class="span" data-cue="3" data-start="8" data-end="11">Well there are many ways to connect to the internet, and</span> <span id="span-4" class="span" data-cue="4" data-start="12" data-end="13">most often people connect wirelessly.</span> <span id="span-5" class="span" data-cue="5" data-start="14" data-end="17">Let's look at an example of how you can connect to the internet.</span></p>
+
+		<p><span id="span-6" class="span" data-cue="6" data-start="18" data-end="22">If you live in a city or a town, you probably have a coaxial cable for</span> <span id="span-7" class="span" data-cue="7" data-start="23" data-end="26">cable Internet, or a phone line if you have DSL, running to the outside of</span> <span id="span-8" class="span" data-cue="8" data-start="27" data-end="30">your house, that connects you to the Internet Service Provider, or ISP.</span></p>
+
+
+		<p><span id="span-9" class="span" data-cue="9" data-start="32" data-end="34">If you live far out in the country, you'll more likely have</span> <span id="span-10" class="span" data-cue="10" data-start="35" data-end="39">a dish outside your house, connecting you wirelessly to your closest ISP, or</span> <span id="span-11" class="span" data-cue="11" data-start="40" data-end="41">you might also use the telephone system.</span></p>
+
+		<p><span id="span-12" class="span" data-cue="12" data-start="42" data-end="46">Whether a wire comes straight from the ISP hookup outside your house, or</span> <span id="span-13" class="span" data-cue="13" data-start="47" data-end="49">it travels over radio waves from your roof,</span> <span id="span-14" class="span" data-cue="14" data-start="50" data-end="53">the first stop a wire will make once inside your house, is at your modem.</span></p>
+
+		<p><span id="span-15" class="span" data-cue="15" data-start="54" data-end="57">A modem is what connects the internet to your network at home.</span> <span id="span-16" class="span" data-cue="16" data-start="58" data-end="59">A few common residential modems are DSL or </span></p>
+	</div>
+
+</div>
+
+
+<script src="js/app.js"></script>
+</body>
+</html>

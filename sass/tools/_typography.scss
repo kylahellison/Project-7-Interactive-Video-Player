@@ -1,0 +1,22 @@
+h1 {
+	font-family: $h1-font;
+	text-align: center;
+	font-size: $header;
+	color: #fff;
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+p {
+	font-family: $body-font;
+	font-size: $paragraph;
+	line-height: $line-height;
+}
+
+#cc {
+	font-size: 12px;
+	text-align: center;
+	padding-left: 3px;
+	padding-right: 3px;
+	font-weight: bold;
+}
