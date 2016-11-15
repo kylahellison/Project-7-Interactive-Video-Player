@@ -10,7 +10,7 @@ html {
 #wrapper {
 	width: 90%;
 	margin: 20px auto 30px;
-	padding: 20px 26px 20px 30px;
+	padding: 10px;
 	background-color: $wrapper-bg;
 	border-radius: 10px;
 }
@@ -46,9 +46,10 @@ html {
 
 #video-controls {
 	width: 100%;
-	height: 28px;
+	min-height: 28px;
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 .highlight {
@@ -135,13 +136,3 @@ html {
 	padding-right: 5px;
 }
 
-
-@media screen and (max-width: 320px) {
-	#video-controls,
-	#fsbutton,
-	#selectspeed,
-	#vol-slide,
-	#progressTime {
-		display: none;
-	}
-}
