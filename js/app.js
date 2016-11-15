@@ -1,4 +1,4 @@
-//Could not finish two of the Exceeds Expectations requirements 
+//Could not finish two of the Exceeds Expectations requirements
 //Couldn't figure out how to make the video jump to point of video corresponding to where user clicked on the transcript
 //Couldn't figure out the buffering progress
 
@@ -6,14 +6,14 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 	console.log("DOM fully loaded");
-	initializeHTMLPlayer(); 
+	initializeHTMLPlayer();
 }, false);
 
 
 
 //VARIABLES
 var videoPlayer;
-var progressBar = document.getElementById('progress-bar');
+var progressBar = document.getElementById("progress-bar");
 var lines = document.getElementById("caption-wrap").getElementsByTagName("span");
 var speedSlow = document.getElementById("slow");
 var speedNormal = document.getElementById("normal");
@@ -22,14 +22,14 @@ var speedFast = document.getElementById("fast");
 
 
 function initializeHTMLPlayer() {
-	videoPlayer = document.getElementById('video-player');
+	videoPlayer = document.getElementById("video-player");
 	videoPlayer.controls = false;
 	videoPlayer.textTracks[0].mode="hidden";
-	videoPlayer.addEventListener('timeupdate', updateProgressBar, false);
-	videoPlayer.addEventListener('timeupdate', seektimeupdate, false);
+	videoPlayer.addEventListener("timeupdate", updateProgressBar, false);
+	videoPlayer.addEventListener("timeupdate", seektimeupdate, false);
 	
 	//show controls when page first loads
-	var videocontrols = document.getElementById('video-controls');
+	var videocontrols = document.getElementById("video-controls");
 	videocontrols.style.visibility = "visible";	
 
 	videoPlayer.addEventListener("timeupdate", highlight, false);
@@ -42,13 +42,13 @@ function initializeHTMLPlayer() {
 
 //Show video controls on mouseover
 function showControls() {
-	var videocontrols = document.getElementById('video-controls');
+	var videocontrols = document.getElementById("video-controls");
 	videocontrols.style.display = "flex";
 }
 
 //Hide video controls on mouseout
 function hideControls() {
-	var videocontrols = document.getElementById('video-controls');
+	var videocontrols = document.getElementById("video-controls");
 
 		if (videoPlayer.paused) {
 		videocontrols.style.display = "flex";	
@@ -59,9 +59,9 @@ function hideControls() {
 
 //toggle visibility of play and pause buttons
 function togglePlayPause() {
-	var playbtn = document.getElementById('playpause');
-	var pausebtn = document.getElementById('pauseplay');
-	var videocontrols = document.getElementById('video-controls');
+	var playbtn = document.getElementById("playpause");
+	var pausebtn = document.getElementById("pauseplay");
+	var videocontrols = document.getElementById("video-controls");
 	if (videoPlayer.paused || videoPlayer.ended) {
 		playbtn.title = "play";
 		videoPlayer.play();
@@ -90,8 +90,8 @@ function stopPlayer() {
 
 //mute button - on click video volume mutes
 function toggleMute() {
-	var mutebtn = document.getElementById('mute');
-	var unmutebtn = document.getElementById('unmute');
+	var mutebtn = document.getElementById("mute");
+	var unmutebtn = document.getElementById("unmute");
 	if (videoPlayer.muted) {
 		mutebtn.style.display ="block";
 		unmutebtn.style.display = "none";

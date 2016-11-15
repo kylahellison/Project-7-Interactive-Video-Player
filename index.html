@@ -16,7 +16,7 @@
 <div id="wrapper">
 	<div id="video-wrap" onMouseOver="showControls()" onMouseOut="hideControls()">
 
-		<video id="video-player" width="100%" controls>
+		<video id="video-player" controls>
 			<source src="video/video.mp4" type="video/mp4">
 			<source src="video/video.ogg" type="video/ogg">
 			<track id="videotrack" label="English" kind="captions" srclang="en" src="video/captions.vtt" default>
@@ -26,7 +26,7 @@
 		<div id="control-wrap">
 
 			<div id="progress-container">
-			    <progress id="progress-bar" class="bar" min="0" max="100" value="0">
+			    <progress id="progress-bar" class="bar"  max="100" value="0">
 			    	0% played
 			    </progress>
 			</div>
@@ -59,7 +59,7 @@
 
 				<div id="control-R">
 				   <button id="closedcaption" class="button" type="button" onclick="toggleCaptions();">
-				   		<p id="cc" >CC</p>
+				   		CC
 				   </button>
 
 				   <button id="mute" class="button" type="button" data-state="mute" onclick="toggleMute();">
@@ -76,7 +76,7 @@
 					</button>
 
 				   <div id="vol-slide">
-					<input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
+					<input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)">
 					</div>
 
 			   		<div id="selectspeed">
